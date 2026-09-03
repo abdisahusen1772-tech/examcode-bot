@@ -595,3 +595,19 @@ def contact_menu(message):
 
 print("Exam Code Academy Interactive Bot is running...")
 bot.infinity_polling()
+from flask import Flask
+import threading
+import os
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
+
+t = threading.Thread(target=run)
+t.start()
