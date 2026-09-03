@@ -4,11 +4,12 @@ from dotenv import load_dotenv
 from telebot import types
 import sqlite3
 from datetime import datetime
+# Safely load local .env if it exists (for your PC), otherwise skip it on Render
+if os.path.exists('.env'):
+    load_dotenv()
 
-load_dotenv()
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = os.environ.get("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
-ADMIN_CHAT_ID = 196911057  # Replace with actual admin Telegram ID
 
 # Database Setup
 def init_db():
